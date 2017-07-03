@@ -1,0 +1,1 @@
+AppView = Backbone.view.extend()
