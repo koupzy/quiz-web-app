@@ -5,7 +5,7 @@ require.config({
         backbone: 'vendor/backbone/backbone',
         bootstrap: 'vendor/bootstrap/bootstrap.min',
         text: 'vendor/require/text',
-        router: 'router'
+        domReady: 'vendor/require/domReady'
     },
     shim: {
         jquery: {
@@ -20,15 +20,13 @@ require.config({
         },
         bootstrap: {
             deps: ['jquery']
-        },
-        router: {
-            exports: 'router',
-            deps: ['backbone']
         }
     }
 });
 
-require(['app'],function (App) {
-   App.initialize();
+require(['app', 'domReady'],function (App, domReady) {
+    domReady(function(){
+        App.initialize();
+    });
 });
 

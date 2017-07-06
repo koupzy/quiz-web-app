@@ -25,7 +25,6 @@ define([
             this.set('name', name);
             return this;
         }
-
     });
 
     return Category;

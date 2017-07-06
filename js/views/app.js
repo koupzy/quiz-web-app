@@ -11,16 +11,23 @@ define([
             'click a': 'onClick'
         },
 
-        //initialize: function(){}
+        initialize: function() {
+            this.$container = this.$('#app-container');
+        },
 
         render: function() {
             return this;
         },
 
+        renderView: function(view) {
+            this.$container.html(view.render().el);
+        },
+
         onClick: function(e){
             e.preventDefault();
-            alert(e.currentTarget.getAttribute('href'));
-            Router.getInstance().navigate(e.currentTarget.getAttribute('href'), {trigger: true});
+            var href = e.currentTarget.getAttribute('href');
+            Router.getInstance().navigate(href, {trigger: true});
+            console.log(href);
         }
     });
 });

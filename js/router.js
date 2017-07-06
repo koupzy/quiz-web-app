@@ -6,31 +6,37 @@ define([
 function ($, _, Backbone) {
     var Router = Backbone.Router.extend({
         routes: {
-            '*path': 'defaults',
-            'category': 'showCategories'
+            'category': 'listCategory',
+            '*path': 'defaults'
+        },
+
+        initialize: function (options) {
+            this.categoryCollection = options.categoryCollection;
+            this.categoryListView = options.categoryListView;
+            this.appView = options.appView;
         },
 
         start: function(){
             Backbone.history.start();
         },
 
-        showCategories: function(){
+        listCategory: function(){
+            this.appView.renderView(this.categoryListView);
+            this.categoryCollection.fetch();
             console.log('Hello World!');
-            alert('Hello World!');
         },
 
         defaults: function(path){
             console.log(path);
-            alert(path);
         }
     });
 
     var _instance = null;
 
     return {
-        getInstance: function(){
+        getInstance: function(options){
             if (_instance === null) {
-                _instance = new Router();
+                _instance = new Router(options);
             }
 
             return _instance;

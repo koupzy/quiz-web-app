@@ -1,14 +1,21 @@
 define([
     'jquery',
     'bootstrap',
-    'router',
-    'views/app'
-], function(jQuery, bootstrap, Router, AppViews) {
+    'collections/categories',
+    'views/app',
+    'views/category-list',
+    'router'
+], function(jQuery, bootstrap, CategoryCollection, AppView, CategoryListView, Router) {
   var initialize = function(){
-      Router.getInstance().start();
+      var categoryCollection = new CategoryCollection();
 
-      var app = new AppViews();
-      app.render();
+      Router.getInstance({
+          categoryCollection: categoryCollection,
+          appView: new AppView(),
+          categoryListView: new CategoryListView({
+              collection: categoryCollection
+          })
+      }).start();
   };
 
   var loadPlugins = function(){
