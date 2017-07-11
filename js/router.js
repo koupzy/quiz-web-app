@@ -7,8 +7,10 @@ function ($, _, Backbone) {
     var Router = Backbone.Router.extend({
         routes: {
             'category': 'listCategory',
+            'category/newCategory': 'newCategory',
             '*path': 'defaults'
         },
+
 
         initialize: function (options) {
             this.categoryCollection = options.categoryCollection;
@@ -22,8 +24,18 @@ function ($, _, Backbone) {
 
         listCategory: function(){
             this.appView.renderView(this.categoryListView);
-            this.categoryCollection.fetch();
+            this.categoryCollection.fetch({
+                success: function (response) {
+                    console.log(response);
+                },
+                error:function () {
+                    console.log('Erreur survenu dans la requete');
+                }
+            });
             console.log('Hello World!');
+        },
+        newCategory: function () {
+
         },
 
         defaults: function(path){

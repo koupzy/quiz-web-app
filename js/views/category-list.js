@@ -6,9 +6,6 @@ define([
     'text!templates/category-list.html'
 ], function ($ , _, Backbone, Collection, tpl) {
     var Categories = Backbone.View.extend({
-        tagName: 'div',
-
-        className: 'page',
 
         template: _.template(tpl),
 
@@ -20,6 +17,7 @@ define([
         },
 
         render: function() {
+
             this.$el.html(this.template({categories: this.collection.toJSON()}));
             return this;
         },

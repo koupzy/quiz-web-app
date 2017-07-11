@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone'
 ],function ($, _, Backbone) {
-    var Category = new Backbone.Model.extend({
+    var Category = Backbone.Model.extend({
         defaults: {
             id: null,
             name: null
@@ -21,6 +21,7 @@ define([
         getName: function () {
             return this.get('name');
         },
+
         setName: function (name) {
             this.set('name', name);
             return this;

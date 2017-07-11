@@ -8,7 +8,8 @@ define([
         el: 'body',
 
         events: {
-            'click a': 'onClick'
+            'click a': 'onClick',
+            'click #add-category': 'addCategory'
         },
 
         initialize: function() {
@@ -28,6 +29,13 @@ define([
             var href = e.currentTarget.getAttribute('href');
             Router.getInstance().navigate(href, {trigger: true});
             console.log(href);
+        },
+
+        addCategory: function (e) {
+            e.preventDefault();
+            Router.getInstance().navigate('category/newCategory', {trigger: true})
+
         }
+
     });
 });
