@@ -2,6 +2,7 @@ require.config({
     paths:{
         jquery: 'vendor/jQuery/jquery-2.2.3.min',
         jqueryUI: 'vendor/jQuery/jquery-ui.min',
+        jqueryJSON: 'vendor/jQuery/jquery.serializejson.min',
         underscore: '../underscore',
         backbone: 'vendor/backbone/backbone',
         bootstrap: 'vendor/bootstrap/bootstrap.min',
@@ -17,7 +18,7 @@ require.config({
         },
         backbone: {
             exports: 'Backbone',
-            deps: ['jquery', 'underscore', 'jqueryUI']
+            deps: ['jquery', 'underscore', 'jqueryUI', 'jqueryJSON']
         },
         bootstrap: {
             deps: ['jquery']

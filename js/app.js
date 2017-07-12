@@ -4,17 +4,20 @@ define([
     'collections/categories',
     'views/app',
     'views/category-list',
+    'views/category-new',
     'router'
-], function(jQuery, bootstrap, CategoryCollection, AppView, CategoryListView, Router) {
+], function(jQuery, bootstrap, CategoryCollection, AppView, CategoryListView, NewCategory, Router) {
   var initialize = function(){
       var categoryCollection = new CategoryCollection();
+      var newCategory = new NewCategory();
 
       Router.getInstance({
           categoryCollection: categoryCollection,
           appView: new AppView(),
           categoryListView: new CategoryListView({
               collection: categoryCollection
-          })
+          }),
+          addCategory: newCategory
       }).start();
   };
 

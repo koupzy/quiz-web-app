@@ -1,9 +1,11 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
+    'backbone',
+    'models/category',
+    'views/category-new'
 ],
-function ($, _, Backbone) {
+function ($, _, Backbon, CategoryModel, CategoryNewView) {
     var Router = Backbone.Router.extend({
         routes: {
             'category': 'listCategory',
@@ -11,11 +13,11 @@ function ($, _, Backbone) {
             '*path': 'defaults'
         },
 
-
         initialize: function (options) {
             this.categoryCollection = options.categoryCollection;
             this.categoryListView = options.categoryListView;
             this.appView = options.appView;
+            this.addCategory = options.addCategory;
         },
 
         start: function(){
@@ -34,8 +36,10 @@ function ($, _, Backbone) {
             });
             console.log('Hello World!');
         },
-        newCategory: function () {
 
+        newCategory: function () {
+            var view = new CategoryNewView({model: new CategoryModel()});
+            this.appView.renderView(view);
         },
 
         defaults: function(path){
